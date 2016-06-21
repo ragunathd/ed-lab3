@@ -23,5 +23,6 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[app::install_apache]
+      - recipe[app::default]
     attributes:
+
