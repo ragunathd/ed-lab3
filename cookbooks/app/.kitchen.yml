@@ -1,6 +1,9 @@
 ---
 driver:
-  name: vagrant
+  name: docker
+
+network:
+  - ["forwarded_port", {guest: 80, host: 80}]
 
 provisioner:
   name: chef_zero
@@ -12,11 +15,13 @@ provisioner:
 #   format: doc
 
 platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: centos-6.5
+    driver_config:
+      forward:
+      - 80:80
 
 suites:
   - name: default
     run_list:
-      - recipe[app::default]
+      - recipe[app::install_apache]
     attributes:
